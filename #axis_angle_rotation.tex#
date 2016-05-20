@@ -52,7 +52,7 @@
 \textbf{Solution}
 
 
-As show in Figure \ref{fig1}, the axis \textbf{U} goes through the origin, a vector \textbf{P} rotates about \textbf{U} to $\mathbf{P}'$. Let $\theta$ denotes the rotation angle, and let $\phi$ denotes the angle between \textbf{U} and \textbf{P}. From \textbf{U} we can define a plane $S$(whose normal is \textbf{U}). Now we have: 
+As show in Figure \ref{fig1}, the axis \textbf{U} goes through the origin, a vector \textbf{P} rotates about \textbf{U} to $\mathbf{P}'$. Let $\theta$ denotes the rotation angle. From \textbf{U} we can define a plane $S$(whose normal is \textbf{U}). Now we have: 
 \begin{displaymath}
 \begin{split}
 \mathbf{U} &= [u_x, u_y, u_z]^T, \\
@@ -65,11 +65,9 @@ As show in Figure \ref{fig1}, the axis \textbf{U} goes through the origin, a vec
 Project \textbf{P} to \textbf{U} and $S$, we can get $\mathbf{P}_1$ and $\mathbf{P}_2$:
 \begin{displaymath}
 \begin{split}
-\mathbf{P} &= \mathbf{P}_1+\mathbf{P}_2, \\
-\mathbf{P}_1 &= (\mathbf{P}\cdot\mathbf{U})\mathbf{U}, \\
-|\mathbf{P}_1| &=  |\mathbf{P}|\cos{\phi}, \\
-\mathbf{P}_2 &= \mathbf{P} - \mathbf{P}_1, \\
-|\mathbf{P}_2| &=  |\mathbf{P}|\sin{\phi}.
+\mathbf{P} &= \mathbf{P}_1+\mathbf{P}_2 \\
+\mathbf{P}_1 &= (\mathbf{P}\cdot\mathbf{U})\mathbf{ \\
+\mathbf{P}_2 &= \mathbf{P} - \mathbf{P}_1 = \mathbf{P} - (\mathbf{P}\cdot\mathbf{U})\mathbf{U}
 \end{split}
 \end{displaymath}
 
@@ -78,8 +76,8 @@ Notice that rotating \textbf{P} is equivalent to firstly rotating $\mathbf{P}_2$
 To represent $\mathbf{P}'_2$, we first to establish some frame for plane $S$. It is convenient to choose vector $\mathbf{P}_2$ be the \textit{unit vector}(though, maybe $|\mathbf{P}_2| \ne 1$) of the X axis, and some other vector $\mathbf{P}_3$ with the same length of $\mathbf{P}_2$ as the Y axis of plane $S$, which satisfies
 \begin{displaymath}
 \begin{split}
-\mathbf{P}_2 \cdot \mathbf{P}_3 = 0, \\
-|\mathbf{P}_2|=|\mathbf{P}_3|.
+\mathbf{P}_2 \cdot \mathbf{P}_3 = 0 \\
+|\mathbf{P}_2|=|\mathbf{P}_3|
 \end{split}
 \end{displaymath}
 
