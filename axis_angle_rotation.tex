@@ -79,10 +79,33 @@ To represent $\mathbf{P}'_2$, we first to establish some frame for plane $S$. It
 \begin{displaymath}
 \begin{split}
 \mathbf{P}_2 \cdot \mathbf{P}_3 = 0, \\
-|\mathbf{P}_2|=|\mathbf{P}_3|.
+|\mathbf{P}_2| = |\mathbf{P}'_2| = |\mathbf{P}_3|.
 \end{split}
 \end{displaymath}
+Now, according to the rotation matrix in 2D plane, we can write:
+\begin{displaymath}
+\mathbf{P}'_2 = \mathbf{P}_2\cos{\theta} + \mathbf{P}_3\sin{\theta}.
+\end{displaymath}
+Then, we determine $\mathbf{P}_3$. It is true that $\mathbf{P}_3$ is parallel to $\mathbf{P}\times\mathbf{U}$, and 
+\begin{displaymath}
+|\mathbf{P}\times\mathbf{U}| = |\mathbf{P}| \cdot 1 \cdot \sin{\phi} = |\mathbf{P}_2| = |\mathbf{P}_3|.
+\end{displaymath}
+So we can get:
+\begin{displaymath}
+\mathbf{P}_3 = \mathbf{P}\times\mathbf{U}.
+\end{displaymath}
 
+Combining above:
+\begin{displaymath}
+\begin{split}
+\mathbf{P}' &= \mathbf{P}_1 + \mathbf{P}'_2 \\
+ &= (\mathbf{P}\cdot\mathbf{U})\mathbf{U} + [\mathbf{P}-(\mathbf{P}\cdot\mathbf{U})\mathbf{U}]\cos{\theta}+\mathbf{P}\times\mathbf{U}\sin{\theta} \\
+ &= \mathbf{P}\cos{\theta} + (\mathbf{P}\cdot\mathbf{U})\mathbf{U}(1-\cos{\theta})+\mathbf{P}\times\mathbf{U}\sin{\theta}
+\end{split}
+\end{displaymath}
+Therefore, the rotatio matrix is
+\begin{displaymath}
+\end{displaymath}
 
 \section{Decomposition}
 
