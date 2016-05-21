@@ -8,4 +8,4 @@
 
 # cpp
 *.user
-build/*/*
+build/**/*
