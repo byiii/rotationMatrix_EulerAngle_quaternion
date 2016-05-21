@@ -1,5 +1,11 @@
+# backup
 *.*~
+
+# tex message file
 *.log
 *.aux
 *.out
-#*.*#
+
+# cpp
+*.user
+build/*/*
