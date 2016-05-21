@@ -68,23 +68,23 @@ void rotationMatrixToAxisAngle(double *mat, double *axis, double &angle)
     Eigen::JacobiSVD<Eigen::Matrix3d> svd(rot_i, Eigen::ComputeFullV);
     Eigen::Vector3d rot_axis = svd.matrixV().col(2);
 
-    axis[0] = rot_axis(0);
-    axis[1] = rot_axis(1);
-    axis[2] = rot_axis(2);
+    double ux = fabs(rot_axis(0));
+    double uy = fabs(rot_axis(1));
+    double uz = fabs(rot_axis(2));
 
     double uz_sin = rot(1,0)-rot(0,1);
     double uy_sin = rot(0,2)-rot(2,0);
     double ux_sin = rot(2,1)-rot(1,2);
     if(ux_sin>DBL_EPSILON)
-        axis[0] = fabs(axis[0]);
+        axis[0] = ux;
     else
-        axis[0] = -fabs(axis[0]);
+        axis[0] = -ux;
     if(uy_sin>DBL_EPSILON)
-        axis[1] = fabs(axis[1]);
+        axis[1] = uy;
     else
-        axis[1] = -fabs(axis[1]);
+        axis[1] = -uy;
     if(uz_sin>DBL_EPSILON)
-        axis[2] = fabs(axis[2]);
+        axis[2] = uz;
     else
-        axis[2] = -fabs(axis[2]);
+        axis[2] = -uz;
 }
