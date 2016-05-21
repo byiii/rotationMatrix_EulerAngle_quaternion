@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+\usepackage[top=1.25in, bottom=1.25in, left=1.5in, right=1.5in]{geometry}
 
 \usepackage{xeCJK}
 \usepackage{fontspec,xltxtra,xunicode}
@@ -31,6 +32,7 @@
 \newcommand{\youyuan}{\CJKfamily{youyuan}}
 
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 \begin{document}
 \author{BYIII}
@@ -49,7 +51,7 @@
 \label{fig1}
 \end{figure}
 
-\textbf{Solution}
+\noindent\textbf{Solution}
 
 
 As show in Figure \ref{fig1}, the axis \textbf{U} goes through the origin, a vector \textbf{P} rotates about \textbf{U} to $\mathbf{P}'$. Let $\theta$ denotes the rotation angle, and let $\phi$ denotes the angle between \textbf{U} and \textbf{P}. From \textbf{U} we can define a plane $S$(whose normal is \textbf{U}). Now we have: 
@@ -105,8 +107,65 @@ Combining above:
 \end{displaymath}
 Therefore, the rotatio matrix is
 \begin{displaymath}
+\mathbf{R} = \begin{bmatrix}
+u_x^2(1-\cos{\theta})+\cos{\theta} & u_xu_y(1-\cos{\theta})-u_z\sin{\theta} & u_xu_z(1-\cos{\theta})+u_y\sin{\theta} \\
+u_xu_y(1-\cos{\theta})+u_z\sin{\theta} & u_y^2(1-\cos{\theta})+\cos{\theta} & u_yu_z(1-\cos{\theta})-u_x\sin{\theta} \\
+u_xu_z(1-\cos{\theta})-u_y\sin{\theta} &  u_yu_z(1-\cos{\theta})+u_x\sin{\theta} & u_z^2(1-\cos{\theta})+\cos{\theta}
+\end{bmatrix}
 \end{displaymath}
 
-\section{Decomposition}
+\textbf{Reference}: \href{https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula}{Rodrigues' rotation formula}
 
+\section{Decomposition}
+\textbf{Problem}: Given the rotation matrix, to extract rotation axis and the rotation angle.
+
+\noindent \textbf{Solution}
+
+Denotes the rotation matrix as \textbf{R}:
+\begin{displaymath}
+\mathbf{R} = \begin{bmatrix}
+r_{11} & r_{12} & r_{13} \\
+r_{21} & r_{22} & r_{23} \\
+r_{31} & r_{32} & r_{33}
+\end{bmatrix}.
+\end{displaymath}
+If from the matrix \textbf{R} we find rotation axis \textbf{U} and rotation angle $\theta$, then \textbf{R} can be rewrotten as:
+\begin{displaymath}
+\mathbf{R} = \begin{bmatrix}
+u_x^2(1-\cos{\theta})+\cos{\theta} & u_xu_y(1-\cos{\theta})-u_z\sin{\theta} & u_xu_z(1-\cos{\theta})+u_y\sin{\theta} \\
+u_xu_y(1-\cos{\theta})+u_z\sin{\theta} & u_y^2(1-\cos{\theta})+\cos{\theta} & u_yu_z(1-\cos{\theta})-u_x\sin{\theta} \\
+u_xu_z(1-\cos{\theta})-u_y\sin{\theta} &  u_yu_z(1-\cos{\theta})+u_x\sin{\theta} & u_z^2(1-\cos{\theta})+\cos{\theta}
+\end{bmatrix}.
+\end{displaymath}
+Thinking matrix \textbf{R} as a linear transformation, it just changes a vector's orientation and has nothing to do with the vector's length. So, 1 must be an eigen value of \textbf{R}:
+\begin{displaymath}
+\mathbf{R}\mathbf{v} = 1\cdot\mathbf{v}.
+\end{displaymath}
+And the eigen vector corresponding to eigen value 1 must be the rotation axis, because \textbf{R} does not change its orientation. Therefore, let's consider the eigen value decomposition of matrix \textbf{R}.
+
+Consider a very simple case, \textbf{A} being the rotation matrix of rotating about the X axis by a $\theta$ angle:
+\begin{displaymath}
+\mathbf{A} = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos{\theta} & -\sin{\theta} \\
+0 & \sin{\theta} & \cos{\theta}
+\end{bmatrix}.
+\end{displaymath}
+The eigen values of \textbf{A} are: 1, $e^{i\theta}$, $e^{-i\theta}$. Then the trace of matrix \textbf{A} is:
+\begin{displaymath}
+tr{A} = 1+2\cos{\theta}.
+\end{displaymath}
+So the rotation angle can be calculated from the trace of the rotation matrix:
+\begin{displaymath}
+\cos{\theta} = \frac{1}{2}(tr\mathbf{A}-1).
+\end{displaymath}
+
+For the complex formation of rotation matrix \textbf{R}, it is the same that
+\begin{displaymath}
+\begin{split}
+tr\mathbf{R} &= (u_x^2+u_y^2+u_z^2)(1-\cos{\theta})+3\cos{\theta} \\
+ &= 1+2\cos{\theta}.
+\end{split}
+\end{displaymath}
+Since the geometry multiplicity of eigen value 1 of rotation matrix is 1, the rotation axis can be calculated from the null space of matrix $(\mathbf{R}-\mathbf{I})$, or the eigen vector of 1.
 \end{document}
