@@ -1,0 +1,78 @@
+%%% Local Veriables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% End:
+
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage[top=1.25in, bottom=1.25in, left=1.5in, right=1.5in]{geometry}
+
+\usepackage{xeCJK}
+\usepackage{fontspec,xltxtra,xunicode}
+\setCJKmainfont[ItalicFont=KaiTi, BoldFont=SimHei]{SimSun}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+
+\newcommand{\song}{\CJKfamily{SimSun}}
+\setCJKfamilyfont{fs}{FangSong}
+\newcommand{\fs}{\CJKfamily{fs}}
+\setCJKfamilyfont{kai}{KaiTi}
+\newcommand{\kai}{\CJKfamily{kai}}
+\setCJKfamilyfont{yahei}{Microsoft YaHei}
+\newcommand{\yahei}{\CJKfamily{yahei}}
+\setCJKfamilyfont{hei}{SimHei}
+\newcommand{\hei}{\CJKfamily{hei}}
+\setCJKfamilyfont{lishu}{LiSu}
+\newcommand{\lishu}{\CJKfamily{lishu}}
+\setCJKfamilyfont{youyuan}{YouYuan}
+\newcommand{\youyuan}{\CJKfamily{youyuan}}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+\author{BYIII}
+\title{Quaternion, Euler Angles, and Rotation Matrix}
+\date{}
+
+\maketitle
+
+\section{Quaternion}
+The quaternion is a number system that extends the complex numbers. Quaternion was first introduced by Irish mathematician William Rowan Hamilton in 1843.
+
+Complex numbers have one imaginary part, which is often denoted as $i$. Quaternions extend to three imaginary parts, $i$, $j$, and $k$. Formally, quaternions is a four-dimensional vector space over the real number. The quaternions set \textbf{H} has three operations: addition, scalar multiplication, and quaternion multiplication.
+
+\subsection*{Multiplication of Basic Elements}
+Firstly, and most importantly, the multiplication of basic elements of quaternions:
+\begin{displaymath}
+i^2 = j^2 = k^2 = ijk = -1
+\end{displaymath}
+where $i$, $j$, $k$ denote the basis elements of the imaginary parts of \textbf{H}. And from the above definition, we can derive:
+\begin{displaymath}
+\begin{split}
+ij = k, &\quad ji = -k, \\
+jk = i, &\quad kj = -i, \\
+ki = j, &\quad ik = -j.
+\end{split}
+\end{displaymath}
+Then, we should notice that the multiplication between quaternions is not commutative. And the multiplication between two of imaginary bases $i$, $j$, $k$ following the \textit{i->j->k->i->...} order loop will result in a positive of the missing one, if not, then the negative of the missing imaginary basis.
+
+\subsection*{Addition}
+The Addition between two quaternions $\mathbf{q}_1 = a_1 + ib_1+jc_1+kd_1$ and $\mathbf{q}_2 = a_2 + ib_2+jc_2+kd_2$ is just the same as the linear vector space:
+\begin{displaymath}
+\mathbf{q}_1 + \mathbf{q}_2 = (a_1+a_2) + i(b_1+b_2) + j(c_1+c_2) + k(d_1+d_2);
+\end{displaymath}
+
+\section{Quaternion and Rotation Matrix}
+
+\section{Euler Angles}
+
+\section{Euler Angles and Rotation Matrix}
+
+\section{Euler Angles and Quaternion}
+
+\end{document}
