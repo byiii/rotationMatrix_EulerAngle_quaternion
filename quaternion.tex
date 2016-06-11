@@ -48,7 +48,7 @@
 
 The quaternion is a number system that extends the complex numbers. Quaternion was first introduced by Irish mathematician William Rowan Hamilton in 1843.
 
-Complex numbers have one imaginary part, which is often denoted as $i$. Quaternions extend to three imaginary parts, $i$, $j$, and $k$. Formally, quaternions is a four-dimensional vector space over the real number. The quaternions set \textbf{H} has three operations: addition, scalar multiplication, and quaternion multiplication.
+Complex numbers have one imaginary part, which is often denoted as $i$. Quaternions extend to three imaginary parts, $i$, $j$, and $k$. Formally, a quaternion is a four-dimensional vector space over the real number. The quaternions set \textbf{H} has three operations: addition, scalar multiplication, and quaternion multiplication.
 
 %% ************************************
 \subsection{Multiplication of Basic Elements}
@@ -62,7 +62,6 @@ Firstly, and most importantly, the multiplication of basic elements of quaternio
     ijk &= -1.
   \end{split}
 \end{equation}
-
 where $i$, $j$, $k$ denote the basis elements of the imaginary part of \textbf{H}. And from the above definition, we can derive:
 \begin{equation}
   \begin{split}
@@ -71,29 +70,30 @@ where $i$, $j$, $k$ denote the basis elements of the imaginary part of \textbf{H
     ki = j, &\quad ik = -j.
   \end{split}
 \end{equation}
+
 Then, we should notice that the multiplication between quaternions is not commutative. And the multiplication between two of imaginary bases $i$, $j$, $k$ following the \textit{i->j->k->i->...} order loop will result in a positive of the missing one, if not, then the negative of the missing imaginary basis.
 
 %% ***********
 \subsection{Addition}
 
 The Addition between two quaternions $q_1 = a_1 + ib_1+jc_1+kd_1$ and $q_2 = a_2 + ib_2+jc_2+kd_2$ is just the same as the linear vector space:
-\begin{displaymath}
+\begin{equation}
   q_1 + q_2 = (a_1+a_2) + i(b_1+b_2) + j(c_1+c_2) + k(d_1+d_2).
-\end{displaymath}
+\end{equation}
 
 %% ************************
 \subsection{Scalar Multiplication}
 
 A scalar number multiplies a quaternion is same as the scalar multiplication operation in the linear vector space. If $s$ is the scalar, and $q=a+ib+jc+kd$, then the scalar multiplication s*q is:
-\begin{displaymath}
+\begin{equation}
   s*q =  as+ibs+jcs+kds.
-\end{displaymath}
+\end{equation}
 
 %% ****************************
 \subsection{Hamilton Product}
 
 The product of two quaternions, $q_1=a_1+ib_1+jc_1+dk_1$ and $q_2=a_2+ib_2+jc_2+kd_2$, is called the Hamilton product. Due to the non-commutativity of multiplication of the basic elements, the Hamilton product is different from the complex number product:
-\begin{displaymath}
+\begin{equation}
   \begin{split}
     q_1q_2 &= (a_1+ib_1+jc_1+kd_1)(a_2+ib_2+jc_2+kd_2) \\
     &= a_1a_2+ia_1b_2+ja_1c_2+ka_1d_2             \\
@@ -109,29 +109,28 @@ The product of two quaternions, $q_1=a_1+ib_1+jc_1+dk_1$ and $q_2=a_2+ib_2+jc_2+
       a_1b_2+b_1a_2+c_1d_2-d_1c_2         \\
       a_1c_2-b_1d_2+c_1a_2+d_1b_2         \\
       a_1d_2+b_1c_2-c_1b_2+d_1a_2         \\
-    \end{pmatrix}
+    \end{pmatrix}.
   \end{split}
-\end{displaymath}
+\end{equation}
 
 %% **************
 \subsection{Conjugation}
 
 The conjugation of a quaternion $p=a+ib+jc+kd$ is 
-\begin{displaymath}
+\begin{equation}
   q^*=a-ib-jc-kd. 
-\end{displaymath}
-
+\end{equation}
 It is the same with the complex number. Specially, the quaternion conjugation can be represented by multiplication as addition:
 
-\begin{displaymath}
+\begin{equation}
   q^* = -1/2(q+iqi+jqj+kqk).
-\end{displaymath}
+\end{equation}
 
 Conjugation is an involution, meaning that it is its own inverse, so conjugating an element twice returns the original element. And the conjugation of a product of two quaternion is:
-\begin{displaymath}
+\begin{equation}
   (pq)^* = q^*p^*.
-\end{displaymath}
-That is similar to that of two element in the normal linear vector space.
+\end{equation}
+That is similar to that of two element in the common linear vector space.
 
 %% ******************
 \subsection{Quaternion Norm}
@@ -139,7 +138,7 @@ That is similar to that of two element in the normal linear vector space.
 Notice that the Hamilton product of a quaternion and its conjugation is a real number, or we say the product has zero imaginary part. The norm of a quaternion is defined as:
 
 \begin{equation}
-  \|q\| = \sqrt{qq*} = \sqrt{q*q} = \sqrt{a^2+b^2+c^2+d^2}
+  \|q\| = \sqrt{qq^*} = \sqrt{q^*q} = \sqrt{a^2+b^2+c^2+d^2}
 \end{equation}
 
 Two properties of quaternion norm:
@@ -161,8 +160,11 @@ Based on the conjugation and the norm, the reciprocal of a quaternion is another
   q^{-1} = \frac{1}{\|q\|^2}
 \end{equation}
 
+%% ****************************************
+\section{Quaternion and Spatial Rotation in $\mathbb{R}^3$}
+
 %% *************************************
-\section{Quaternion and the Geometry of $\mathbb{R}^3$}
+\subsection{Quaternion and the Geometry of $\mathbb{R}^3$}
 
 We can divide a quaternion in to scalar part and imaginary part: $p = s+v$, s is a scalar, and $v$ is a vector in $\mathbb{R}^3$. Because the vector part of a quaternion is a vector in $\mathbb{R}^3$, the geometry of $\mathbb{R}^3$ is reflected in the algebraic structure of the quaternions. Many operations on vectors can be defined in terms of quaternions, and this makes it possible to apply quaternion techniques wherever spatial vectors arise. For instance, this is true in electrodynamics and 3D computer graphics.
 
@@ -189,12 +191,10 @@ Then the Hamilton product of $p$ and $q$ can be written as:
   pq = (s_1s_2-v_1 \cdot v_2)+(s_1v_2+s_2v_1+v_1 \times v_2).
 \end{displaymath}
 
-%% ****************************************
-\section{Quaternion and Spatial Rotation in $\mathbb{R}^3$}
-
-Any rotation in 3-dimensions can be represented as a combination of a vector u and a scalar $\theta$. Quaternion gives a simple way to encode this axis-angle representation in four numbers, and can be used to apply the corresponding rotation to a position vector. A rotation through an angle of $\theta$ around the axis defined by a unit vector
+\subsection{Spatial Rotation in $\mathbb{R}^3$}
+Any rotation in 3-dimensions can be represented as a combination of a vector $\mathbf{u}$ and a scalar $\theta$. Quaternion offers a simple way to encode this axis-angle representation in four numbers, and can be used to apply the corresponding rotation to a position vector. A rotation through an angle of $\theta$ around the axis defined by a unit vector:
 \begin{displaymath}
-  u = (u_x, u_y, u_z) = iu_x + ju_y + ku_z
+  \mathbf{u} = (u_x, u_y, u_z) = iu_x + ju_y + ku_z
 \end{displaymath}
 can be represented by a unit quaternion:
 \begin{equation}
@@ -254,7 +254,7 @@ Then then rotation matrix for a unit quaternion $q = q_0 + iq_1 + jq_2 + kq_3$ i
 \begin{equation}
   R = \begin{bmatrix}
     1-2q_2^2-2q_3^2 & 2(q_1q_2-q_3q_0)  & 2(q_1q_3+q_2q_0)  \\
-    2(q_1q_2+q_3q_0)  & 1-2q1^2-2q3^2 & 2(q_2q_3-q_1q_0)  \\
+    2(q_1q_2+q_3q_0)  & 1-2q_1^2-2q_3^2 & 2(q_2q_3-q_1q_0)  \\
     2(q_1q_3-q_2q_0)  & 2(q_2q_3+q_1q_0)  & 1-2q_1^2-2q_2^2
   \end{bmatrix}
 \end{equation}
@@ -270,13 +270,13 @@ Further more, the conversion from rotation matrix to quaternion is:
 then the corresponding quaternion $q = q_0+iq_1+jq_2+kq_3$ can be decomposed as:
 \begin{equation}
   \begin{split}
-    q_0 &= \frac{tr(R)+1}{2},    \\
+    q_0 &= \frac{\sqrt{tr(R)+1}}{2},    \\
     q_1 &= \frac{r_{32}-r_{23}}{4q_0}, \\
     q_2 &= \frac{r_{13}-r_{31}}{4q_0}, \\
     q_3 &= \frac{r_{21}-r_{12}}{4q_0}
   \end{split}
 \end{equation}
-if $q0$ is not equal to zero. Otherwise, we should use the rotation matrix to axis-angle decomposition to calculate the quaternion.
+if $q_0$ is not equal to zero. Otherwise, we should use the rotation matrix to axis-angle decomposition to calculate the quaternion.
 
 %% **************
 \section{Euler Angles}
@@ -404,7 +404,7 @@ According to the relationship between unit quaternion and rotations in three dim
   q = \begin{pmatrix}
     \cos{\psi/2}\cos{\theta/2}\cos{\phi/2}+\sin{\psi/2}\sin{\theta/2}\sin{\phi/2} \\
     \sin{\psi/2}\cos{\theta/2}\cos{\phi/2}-\cos{\psi/2}\sin{\theta/2}\sin{\phi/2} \\
-    \cos{\psi/2}\sin{\theta/2}\cos{\psi/2}+\sin{\psi/2}\cos{\theta/2}\sin{\phi/2} \\
+    \cos{\psi/2}\sin{\theta/2}\cos{\phi/2}+\sin{\psi/2}\cos{\theta/2}\sin{\phi/2} \\
     \cos{\psi/2}\cos{\theta/2}\sin{\phi/2}-\sin{\psi/2}\sin{\theta/2}\cos{\phi/2}
   \end{pmatrix}
 \end{equation}

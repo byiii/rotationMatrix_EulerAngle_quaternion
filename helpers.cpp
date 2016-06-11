@@ -17,7 +17,7 @@ void printMatrix(const double *mat, unsigned rows, unsigned cols, bool rowMajor_
             min_value = mat[i];
     }
     max_value = fabs(max_value); min_value = fabs(min_value);
-    max_value = std::max(max_value, min_value);
+    max_value = std::fmax(max_value, min_value);
     // determine the cout.width number
     int cc = 12;
     while(max_value>1.0)

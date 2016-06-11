@@ -54,7 +54,7 @@
 \noindent\textbf{Solution}
 
 
-As show in Figure \ref{fig1}, the axis \textbf{U} goes through the origin, a vector \textbf{P} rotates about \textbf{U} to $\mathbf{P}'$. Let $\theta$ denotes the rotation angle, and let $\phi$ denotes the angle between \textbf{U} and \textbf{P}. From \textbf{U} we can define a plane $S$(whose normal is \textbf{U}). Now we have: 
+As show in Figure \ref{fig1}, the axis \textbf{U} goes through the origin, a vector \textbf{P} rotates about \textbf{U} to $\mathbf{P}'$. Let $\theta$ denote the rotation angle, and let $\phi$ denote the angle between \textbf{U} and \textbf{P}. From \textbf{U} we can define a plane $S$(whose normal is \textbf{U}). Now we have: 
 \begin{displaymath}
 \begin{split}
 \mathbf{U} &= [u_x, u_y, u_z]^T, \\
@@ -68,14 +68,14 @@ Project \textbf{P} to \textbf{U} and $S$, we can get $\mathbf{P}_1$ and $\mathbf
 \begin{displaymath}
 \begin{split}
 \mathbf{P} &= \mathbf{P}_1+\mathbf{P}_2, \\
+|\mathbf{P}_1| &= \mathbf{P}\cdot\mathbf{U} = |\mathbf{P}|\cos{\phi}, \\
 \mathbf{P}_1 &= (\mathbf{P}\cdot\mathbf{U})\mathbf{U}, \\
-|\mathbf{P}_1| &=  |\mathbf{P}|\cos{\phi}, \\
 \mathbf{P}_2 &= \mathbf{P} - \mathbf{P}_1, \\
 |\mathbf{P}_2| &=  |\mathbf{P}|\sin{\phi}.
 \end{split}
 \end{displaymath}
 
-Notice that rotating \textbf{P} is equivalent to firstly rotating $\mathbf{P}_2$ a $\theta$ angle to $\mathbf{P}'_2$ and then combining $\mathbf{P}_1$ and $\mathbf{P}'_2$ to form $\mathbf{P}'$. So, next step is to determine $\mathbf{P}'_2$. 
+Notice that rotating \textbf{P} is equivalent to firstly rotate $\mathbf{P}_2$ a $\theta$ angle to $\mathbf{P}'_2$ and then combining $\mathbf{P}_1$ and $\mathbf{P}'_2$ to form $\mathbf{P}'$. So, next step is to determine $\mathbf{P}'_2$. 
 
 To represent $\mathbf{P}'_2$, we first to establish some frame for plane $S$. It is convenient to choose vector $\mathbf{P}_2$ be the \textit{unit vector}(though, maybe $|\mathbf{P}_2| \ne 1$) of the X axis, and some other vector $\mathbf{P}_3$ with the same length of $\mathbf{P}_2$ as the Y axis of plane $S$, which satisfies
 \begin{displaymath}
@@ -103,7 +103,7 @@ Combining above:
 \mathbf{P}' &= \mathbf{P}_1 + \mathbf{P}'_2 \\
  &= (\mathbf{P}\cdot\mathbf{U})\mathbf{U} + [\mathbf{P}-(\mathbf{P}\cdot\mathbf{U})\mathbf{U}]\cos{\theta}+\mathbf{P}\times\mathbf{U}\sin{\theta} \\
  &= \mathbf{P}\cos{\theta} + (\mathbf{P}\cdot\mathbf{U})\mathbf{U}(1-\cos{\theta})+\mathbf{P}\times\mathbf{U}\sin{\theta}
-\end{split}
+\end{split}.
 \end{displaymath}
 Therefore, the rotatio matrix is
 \begin{displaymath}
@@ -111,7 +111,7 @@ Therefore, the rotatio matrix is
 u_x^2(1-\cos{\theta})+\cos{\theta} & u_xu_y(1-\cos{\theta})-u_z\sin{\theta} & u_xu_z(1-\cos{\theta})+u_y\sin{\theta} \\
 u_xu_y(1-\cos{\theta})+u_z\sin{\theta} & u_y^2(1-\cos{\theta})+\cos{\theta} & u_yu_z(1-\cos{\theta})-u_x\sin{\theta} \\
 u_xu_z(1-\cos{\theta})-u_y\sin{\theta} &  u_yu_z(1-\cos{\theta})+u_x\sin{\theta} & u_z^2(1-\cos{\theta})+\cos{\theta}
-\end{bmatrix}
+\end{bmatrix}.
 \end{displaymath}
 
 \textbf{Reference}: \href{https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula}{Rodrigues' rotation formula}

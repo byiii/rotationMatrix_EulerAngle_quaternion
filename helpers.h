@@ -26,4 +26,17 @@ inline double getSign(double x)
         return 1.0;
 }
 
+/// get the sign of a double
+inline float getSign(float x)
+{
+    if(fabs(x)>FLT_EPSILON)
+    {
+        if(x>0.0f)
+            return 1.0f;
+        else
+            return -1.0f;
+    }
+    else
+        return 1.0f;
+}
 #endif // HELPERS_H

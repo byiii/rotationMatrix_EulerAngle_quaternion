@@ -48,9 +48,14 @@ int main(int argc, char** argv)
     std::cout << "rotmat_2: ";
     printMatrix(rotmat_2, 3, 3);
 
+    double quaternion_2[4] = {0.0};
+    rotationMatrixToQuaternion(rotmat_2, quaternion_2);
+    std::cout << "quaternion 2 result: ";
+    printVector(quaternion_2, 4);
+    std::cout << std::endl;
 
     double eulerAngles_1[3] = {0.0};
-    rotationMatrixToEulerAngle_viaQuaternion(rotmat, eulerAngles_1);
+    rotationMatrixToEulerAngle_XYZ(rotmat, eulerAngles_1);
     for(size_t i=0; i<3; ++i)
     {
         eulerAngles_1[i] = eulerAngles_1[i]/M_PI*180;
