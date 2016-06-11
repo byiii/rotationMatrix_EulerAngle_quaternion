@@ -380,7 +380,7 @@ Assume we know the extrinsic rotation Euler angles $[\psi, \theta, \phi]$ in the
 \end{minipage}
 \end{center}
 
-Algorithm \ref{alg:a1} lists the procedire to extract Euler angles from a rotation matrix. In both the $\theta=\pi/2$ and $\theta=−\pi/2$ cases, we have found that $\psi$ and $\phi$ are linked. This phenomenon is called Gimbal lock. 
+Algorithm \ref{alg:a1} lists the procedure to extract Euler angles from a rotation matrix. In both the $\theta=\pi/2$ and $\theta=−\pi/2$ cases, we have found that $\psi$ and $\phi$ are linked. This phenomenon is called Gimbal lock. In the normal case($\theta \ne \pm \pi/2$), there are two sets of result, then we can just assume that $\theta$ lies in $[-\pi/2, \pi/2]$ to solve the ambiguity.
 
 
 %% ******************************
@@ -401,22 +401,124 @@ According to the relationship between unit quaternion and rotations in three dim
 \end{displaymath}
 
 \begin{equation}
-  q = \begin{bmatrix}
+  q = \begin{pmatrix}
     \cos{\psi/2}\cos{\theta/2}\cos{\phi/2}+\sin{\psi/2}\sin{\theta/2}\sin{\phi/2} \\
     \sin{\psi/2}\cos{\theta/2}\cos{\phi/2}-\cos{\psi/2}\sin{\theta/2}\sin{\phi/2} \\
     \cos{\psi/2}\sin{\theta/2}\cos{\psi/2}+\sin{\psi/2}\cos{\theta/2}\sin{\phi/2} \\
     \cos{\psi/2}\cos{\theta/2}\sin{\phi/2}-\sin{\psi/2}\sin{\theta/2}\cos{\phi/2}
-  \end{bmatrix}
+  \end{pmatrix}
 \end{equation}
 
 Now we can extract Euler angles base on the above equation:
-\begin{equation}
-\begin{aligned}
+\begin{itemize}
+\item in case that $\theta \ne \pm \pi/2$: 
+\begin{equation}%
+\begin{aligned}%
   \psi   &= \text{atan}\left(\frac{2(q_0q_1+q_2q_3)}{1-2*(q_1^2+q_2^2)}\right) \\
   \theta &= \text{asin}\left(2(q_0q_2-q_3q_1) \right)                   \\
   \phi   &= \text{atan}\left(\frac{2(q_0q_3+q_1q_2)}{1-2*(q_2^2+q_3^2}\right)
-\end{aligned}
+\end{aligned}%
 \end{equation}
+
+\item in case that $\theta = \pi/2$ :
+\begin{equation}
+q = \frac{\sqrt{2}}{2}\begin{pmatrix}%
+\cos{\psi/2}\cos{\phi/2}+\sin{\psi/2}\sin{\phi/2} \\
+\sin{\psi/2}\cos{\phi/2}-\cos{\psi/2}\sin{\phi/2} \\
+\cos{\psi/2}\cos{\phi/2}+\sin{\psi/2}\sin{\phi/2} \\
+\cos{\psi/2}\sin{\phi/2}-\sin{\psi/2}\cos{\phi/2}
+\end{pmatrix}
+\end{equation}
+then we can get:
+\begin{displaymath}
+\begin{aligned}
+  \tan{\left(\frac{\phi}{2}-\frac{\psi}{2}\right)} = \frac{q_1}{q_0} \\
+\phi = \psi + 2\, \text{atan2}(q_1, q_0) \\
+\psi = \phi - 2\, \text{atan2}(q_1, q_0)
+\end{aligned}
+\end{displaymath}
+so Euler angles is:
+\begin{equation}%
+\begin{aligned}%
+\psi &= \phi - 2\, \text{atan2}(q_1, q_0) \\
+\theta &= \frac{\pi}{2} \\
+\phi &= \text{anything, can set to 0}
+\end{aligned}%
+\end{equation}
+
+\item in case that $\theta = -\pi/2$ :
+\begin{equation}
+q = \frac{\sqrt{2}}{2}\begin{pmatrix}%
+\cos{\psi/2}\cos{\phi/2}-\sin{\psi/2}\sin{\phi/2} \\
+\sin{\psi/2}\cos{\phi/2}+\cos{\psi/2}\sin{\phi/2} \\
+-\cos{\psi/2}\cos{\phi/2}+\sin{\psi/2}\sin{\phi/2} \\
+\cos{\psi/2}\sin{\phi/2}+\sin{\psi/2}\cos{\phi/2}
+\end{pmatrix}
+\end{equation}
+then we can get:
+\begin{displaymath}
+\begin{aligned}
+  \tan{\left(\frac{\phi}{2}+\frac{\psi}{2}\right)} = \frac{q_1}{q_0} \\
+\phi = -\psi + 2\, \text{atan2}(q_1, q_0) \\
+\psi = -\phi + 2\, \text{atan2}(q_1, q_0)
+\end{aligned}
+\end{displaymath}
+so Euler angles is:
+\begin{equation}%
+\begin{aligned}%
+\psi &= -\phi + 2\, \text{atan2}(q_1, q_0) \\
+\theta &= -\frac{\pi}{2} \\
+\phi &= \text{anything, can set to 0}
+\end{aligned}%
+\end{equation}
+
+\end{itemize}
+
+
+\section{Inverse Trigonometric Functions in C++}
+\begin{itemize}
+\item $\alpha = \text{asin}(x)$: $x \in [-1, 1] \to \alpha \in [-\pi/2, \pi/2]$;
+
+\item $\alpha = \text{acos}(x)$: $x \in [-1, 1] \to \alpha \in [0, \pi]$;
+
+\item $\alpha = \text{atan}(x)$: 
+\begin{displaymath}
+\begin{aligned}
+x \in (-\infty,\infty) &\to \alpha \in (-\pi/2, \pi/2) \\
+x = \pm 0 &\to \alpha = 0 \\
+x = +\infty &\to \alpha = \pi/2 \\
+x = -\infty &\to \alpha = -\pi/2
+\end{aligned}
+\end{displaymath}
+
+\item $\alpha = \text{atan2}(y, x)$, same as $\alpha = \tan{\frac{y}{x}}$: \\
+\centerline{$y,x \in (-\infty,\infty) \to \alpha \in [-\pi, \pi]$}
+\begin{itemize}
+\item If x and y are both zero, domain error does not occur
+\item If x and y are both zero, range error does not occur either
+\item If y is zero, pole error does not occur
+\item If y is $\pm 0$ and x is negative or -0, $\pm \pi$ is returned
+\item If y is $\pm 0$ and x is positive or +0, $\pm 0$ is returned
+\item If y is $\pm \infty$ and x is finite, $\pm \pi/2$ is returned
+\item If y is $\pm \infty$ and x is $-\infty$, ±3π/4 is returned
+\item If y is $\pm \infty$ and x is $+\infty$, ±π/4 is returned
+\item If x is $\pm 0$ and y is negative, $-\pi/2$ is returned
+\item If x is $\pm 0$ and y is positive, $+\pi/2$ is returned
+\item If x is $-\infty$ and y is finite and positive, $+\pi$ is returned
+\item If x is $-\infty$ and y is finite and negative, $-\pi$ is returned
+\item If x is $+\infty$ and y is finite and positive, +0 is returned
+\item If x is $+\infty$ and y is finite and negative, -0 is returned
+\item If either x is NaN or y is NaN, NaN is returned
+\end{itemize}
+\end{itemize}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=3in]{figures/atan2.png}
+\caption{atan2 function domain and region}
+\label{fig:atan2}
+\end{figure}
+
 
 %% ***********
 \begin{thebibliography}{99}
